@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy
+openpyxl
+openai>=1.0.0
+rapidfuzz>=2.13
+unidecode>=1.3
+python-dateutil
+python-dotenv
+flask
+flask-cors

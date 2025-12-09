@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Environment Variables
+.env
+
+# Data and Outputs
+Leads_Unificados_Funil.xlsx
+out/
+
+# Logs
+*.txt
+!requirements.txt
+!columns.txt
+!columns_clean.txt
