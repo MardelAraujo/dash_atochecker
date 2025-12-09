@@ -1,110 +1,174 @@
-# Análise de Leads Automatizada
+# 📊 Análise de Leads Automatizada
 
-Este projeto contém um script Python (`analyze_leads.py`) projetado para processar planilhas de leads, normalizar dados, calcular KPIs de funil de vendas e gerar insights automáticos utilizando Inteligência Artificial (PandasAI).
-
-## O que o script faz?
-
-1.  **Carregamento de Dados**: Lê arquivos Excel (`.xlsx`) ou CSV.
-2.  **Normalização**: Padroniza nomes, status e origens, removendo acentos e corrigindo variações de escrita (ex: "Whatsapp" vs "WhatsApp").
-3.  **Cálculo de KPIs**:
-    *   Contagem de leads por status e etapa do funil.
-    *   Taxas de conversão (Geral e por Responsável).
-    *   Eficiência por origem do lead.
-    *   Tempo médio de conversão entre etapas (Status 1 → 2 → 3).
-4.  **Insights com IA**: Utiliza o PandasAI (opcionalmente conectado à OpenAI) para analisar os dados processados e gerar um relatório textual com gargalos, riscos e oportunidades.
-5.  **Exportação**: Gera arquivos JSON com métricas, um relatório em texto (`.txt`) e uma versão normalizada da base de dados (`.csv`).
+Este projeto contém um script Python (`analyze_leads.py`) projetado para processar planilhas de leads, normalizar dados, calcular KPIs do funil de vendas e gerar insights automáticos utilizando Inteligência Artificial (PandasAI).
 
 ---
 
-## Passo a Passo para Utilização
+## 📌 O que o script faz?
 
-Siga os passos abaixo para configurar o ambiente e rodar a análise.
+1. **Carregamento de Dados**  
+   Lê arquivos Excel (`.xlsx`) ou CSV.
 
-### 1. Pré-requisitos
+2. **Normalização**  
+   Padroniza nomes, status e origens, removendo acentos e corrigindo variações de escrita  
+   (ex.: “Whatsapp” vs “WhatsApp”).
 
-*   Python 3.8 ou superior instalado.
-*   Arquivo de leads (ex: `Leads_Unificados_Funil.xlsx`) na pasta do projeto.
-*   (Opcional) Chave de API da OpenAI se quiser os insights gerados por IA.
+3. **Cálculo de KPIs**
+   - Contagem de leads por status e etapa do funil  
+   - Taxas de conversão (geral e por responsável)  
+   - Eficiência por origem do lead  
+   - Tempo médio de conversão entre etapas (Status 1 → 2 → 3)
 
-### 2. Criação do Ambiente Virtual
+4. **Insights com IA**  
+   Utiliza PandasAI (com OpenAI opcional) para gerar um relatório textual com gargalos, riscos e oportunidades.
 
-É recomendável usar um ambiente virtual para não conflitar com outras instalações do Python.
+5. **Exportação**  
+   Gera automaticamente:
+   - JSON com métricas  
+   - Relatório em texto (`.txt`)  
+   - Base normalizada (`.csv`)
 
-Abra o terminal (PowerShell ou CMD) na pasta do projeto e execute:
+---
+
+# ▶️ Passo a Passo para Utilização
+
+Siga os passos abaixo para configurar o ambiente e executar a análise.
+
+---
+
+## 1. Pré-requisitos
+
+- Python 3.8 ou superior
+- Arquivo de leads (ex.: `Leads_Unificados_Funil.xlsx`)
+- (Opcional) Chave de API da OpenAI
+
+---
+
+## 2. Criação do Ambiente Virtual
 
 ```powershell
-# Cria o ambiente virtual chamado 'venv'
 python -m venv venv
+Ativar:
 
-# Ativa o ambiente virtual (Windows PowerShell)
+powershell
+Copiar código
 .\venv\Scripts\Activate.ps1
-```
+Se ocorrer erro de permissão:
 
-*Se houver erro de permissão no PowerShell, execute `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` e tente ativar novamente.*
-
-### 3. Instalação das Dependências
-
-Com o ambiente ativado (você verá `(venv)` no início da linha do terminal), instale as bibliotecas necessárias:
-
-```powershell
+powershell
+Copiar código
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+3. Instalação das Dependências
+powershell
+Copiar código
 pip install -r requirements.txt
-```
-
-### 4. Executando o Script
-
-Para rodar a análise, utilize o comando abaixo. Substitua `Leads_Unificados_Funil.xlsx` pelo nome do seu arquivo se for diferente.
-
-**Comando Básico:**
-
-```powershell
+4. Executando o Script
+Execução básica:
+powershell
+Copiar código
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx --sheet "Sheet1"
-```
-
-**Comando com Chave da OpenAI (para Insights de IA):**
-
-Se você tiver uma chave da OpenAI, defina-a antes ou passe via argumento (não recomendado expor a chave, mas possível para testes rápidos). O ideal é configurar a variável de ambiente `OPENAI_API_KEY`.
-
-```powershell
-# Opção 1: Definir variável de ambiente (PowerShell)
+Com OpenAI (para insights de IA)
+Opção 1 — Variável de ambiente (recomendada)
+powershell
+Copiar código
 $env:OPENAI_API_KEY="sua-chave-aqui"
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx
-
-# Opção 2: Passar via argumento (menos seguro)
+Opção 2 — Via argumento (menos seguro)
+powershell
+Copiar código
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx --openai_key "sua-chave-aqui"
-```
+📂 Resultados Gerados
+Após a execução, a pasta ./out/ conterá arquivos como:
 
-### 5. Resultados
+kpis_YYYYMMDD_HHMMSS.json
 
-Após a execução, verifique a pasta `./out` (criada automaticamente). Ela conterá:
+insights_YYYYMMDD_HHMMSS.txt
 
-*   `kpis_YYYYMMDD_HHMMSS.json`: Arquivo com todos os números e métricas calculados.
-*   `insights_YYYYMMDD_HHMMSS.txt`: Relatório de texto com a análise da IA.
-*   `leads_normalizados_YYYYMMDD_HHMMSS.csv`: A base de dados tratada e padronizada.
-*   `relatorio_final_YYYYMMDD_HHMMSS.xlsx`: Arquivo Excel com dados normalizados e aba de KPIs.
+leads_normalizados_YYYYMMDD_HHMMSS.csv
 
----
+relatorio_final_YYYYMMDD_HHMMSS.xlsx
 
-## Estrutura de Arquivos
+📁 Estrutura do Projeto
+text
+Copiar código
+/project
+│ analyze_leads.py
+│ requirements.txt
+│ README.md
+│ Leads_Unificados_Funil.xlsx
+├── /out
+│     ├── kpis_*.json
+│     ├── insights_*.txt
+│     ├── leads_normalizados_*.csv
+│     └── relatorio_final_*.xlsx
+└── /frontend
+      ├── src/
+      ├── public/
+      └── package.json
+🎨 Frontend Dashboard (Premium)
+Interface moderna construída com:
 
-*   `analyze_leads.py`: O código fonte principal.
-*   `requirements.txt`: Lista de bibliotecas Python necessárias.
-*   `README.md`: Este arquivo de documentação.
-*   `out/`: Diretório onde os resultados são salvos.
+React
 
----
+Vite
 
-# Frontend Dashboard (Premium)
+TailwindCSS
 
-O projeto conta com uma interface visual moderna e interativa para visualiza��o dos dados processados pelo backend.
+Permite visualizar:
+
+KPIs
+
+Gráficos
+
+Base tratada
+
+Insights
+
+Tendências do funil
+
+Como rodar o Frontend
+1. Pré-requisitos
+Node.js 18+
+
+2. Instalação
+powershell
+Copiar código
+cd frontend
+npm install
+3. Execução
+powershell
+Copiar código
+npm run dev
+Acesse no navegador:
+
+arduino
+Copiar código
+http://localhost:5173
+🔄 Integração Backend ↔ Frontend
+Backend
+Executa analyze_leads.py, gerando arquivos estruturados em /out.
+
+Frontend
+Permite:
+
+Upload dos arquivos CSV/JSON do backend
+
+Visualização de KPIs
+
+Gráficos interativos
+
+Análises dinâmicas
+
+Futuramente haverá API para leitura automática sem upload manual.
 
 ##  Como Ativar o Frontend
 
-O frontend foi constru�do com **React**, **Vite** e **TailwindCSS**. Siga os passos abaixo para rod�-lo:
+O frontend foi construído com **React**, **Vite** e **TailwindCSS**. Siga os passos abaixo para rodá-lo:
 
-### 1. Pr�-requisitos
-*   **Node.js** instalado (vers�o 18 ou superior recomendada).
+### 1. Pré-requisitos
+*   **Node.js** instalado (versão 18 ou superior recomendada).
 
-### 2. Instala��o
+### 2. Instalação
 
 Abra um **novo terminal** (mantenha o do backend aberto se quiser) e navegue para a pasta rontend:
 
@@ -112,13 +176,13 @@ Abra um **novo terminal** (mantenha o do backend aberto se quiser) e navegue par
 cd frontend
 `
 
-Instale as depend�ncias do projeto:
+Instale as dependências do projeto:
 
 `powershell
 npm install
 `
 
-### 3. Execu��o
+### 3. Execução
 
 Inicie o servidor de desenvolvimento:
 
@@ -126,22 +190,22 @@ Inicie o servidor de desenvolvimento:
 npm run dev
 `
 
-O terminal mostrar� um link local, geralmente http://localhost:5173. Clique nele ou abra no seu navegador para ver o Dashboard.
+O terminal mostrará um link local, geralmente http://localhost:5173. Clique nele ou abra no seu navegador para ver o Dashboard.
 
 ---
 
-##  Integra��o Backend <-> Frontend
+##  Integração Backend <-> Frontend
 
 O fluxo de trabalho completo funciona da seguinte maneira:
 
 1.  **Processamento (Backend)**:
-    *   Voc� executa o script nalyze_leads.py conforme as instru��es acima.
+    *   Você executa o script nalyze_leads.py conforme as instruções acima.
     *   Ele gera os arquivos processados na pasta ./out (ex: kpis_....json, leads_normalizados_....csv).
 
-2.  **Visualiza��o (Frontend)**:
+2.  **Visualização (Frontend)**:
     *   Abra o Dashboard no navegador (http://localhost:5173).
-    *   Utilize o bot�o **'Upload Planilha'** (ou futura integra��o autom�tica) para carregar os dados gerados ou a planilha original.
-    *   O Dashboard ler� os dados e exibir� os gr�ficos, KPIs e insights de forma visual e interativa.
+    *   Utilize o botão **'Upload Planilha'** (ou futura integração automática) para carregar os dados gerados ou a planilha original.
+    *   O Dashboard lerá os dados e exibirá os gráficos, KPIs e insights de forma visual e interativa.
 
-*Nota: Atualmente o frontend est� configurado com dados de exemplo para demonstra��o visual. A leitura direta dos arquivos JSON/CSV da pasta ./out ser� feita via upload ou API em etapas futuras.*
+*Nota: Atualmente o frontend está configurado com dados de exemplo para demonstração visual. A leitura direta dos arquivos JSON/CSV da pasta ./out será feita via upload ou API em etapas futuras.*
 
