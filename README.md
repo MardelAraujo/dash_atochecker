@@ -58,26 +58,26 @@ Se ocorrer erro de permissão:
 powershell
 Copiar código
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-3. Instalação das Dependências
+## 3. Instalação das Dependências
 powershell
 Copiar código
 pip install -r requirements.txt
-4. Executando o Script
+## 4. Executando o Script
 Execução básica:
 powershell
 Copiar código
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx --sheet "Sheet1"
 Com OpenAI (para insights de IA)
-Opção 1 — Variável de ambiente (recomendada)
+##Opção 1 — Variável de ambiente (recomendada)
 powershell
 Copiar código
 $env:OPENAI_API_KEY="sua-chave-aqui"
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx
-Opção 2 — Via argumento (menos seguro)
+##Opção 2 — Via argumento (menos seguro)
 powershell
 Copiar código
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx --openai_key "sua-chave-aqui"
-📂 Resultados Gerados
+##📂 Resultados Gerados
 Após a execução, a pasta ./out/ conterá arquivos como:
 
 kpis_YYYYMMDD_HHMMSS.json
@@ -88,7 +88,7 @@ leads_normalizados_YYYYMMDD_HHMMSS.csv
 
 relatorio_final_YYYYMMDD_HHMMSS.xlsx
 
-📁 Estrutura do Projeto
+##📁 Estrutura do Projeto
 text
 Copiar código
 /project
@@ -105,7 +105,7 @@ Copiar código
       ├── src/
       ├── public/
       └── package.json
-🎨 Frontend Dashboard (Premium)
+##🎨 Frontend Dashboard (Premium)
 Interface moderna construída com:
 
 React
@@ -126,16 +126,17 @@ Insights
 
 Tendências do funil
 
-Como rodar o Frontend
-1. Pré-requisitos
+#Como rodar o Frontend
+
+##1. Pré-requisitos
 Node.js 18+
 
-2. Instalação
+##2. Instalação
 powershell
 Copiar código
 cd frontend
 npm install
-3. Execução
+##3. Execução
 powershell
 Copiar código
 npm run dev
@@ -144,7 +145,7 @@ Acesse no navegador:
 arduino
 Copiar código
 http://localhost:5173
-🔄 Integração Backend ↔ Frontend
+## 🔄 Integração Backend ↔ Frontend
 Backend
 Executa analyze_leads.py, gerando arquivos estruturados em /out.
 
