@@ -58,10 +58,14 @@ Se ocorrer erro de permissão:
 powershell
 Copiar código
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 ## 3. Instalação das Dependências
 powershell
 Copiar código
 pip install -r requirements.txt
+
+
 ## 4. Executando o Script
 Execução básica:
 powershell
@@ -77,6 +81,8 @@ python analyze_leads.py --file Leads_Unificados_Funil.xlsx
 powershell
 Copiar código
 python analyze_leads.py --file Leads_Unificados_Funil.xlsx --openai_key "sua-chave-aqui"
+
+
 ##📂 Resultados Gerados
 Após a execução, a pasta ./out/ conterá arquivos como:
 
@@ -89,6 +95,7 @@ leads_normalizados_YYYYMMDD_HHMMSS.csv
 relatorio_final_YYYYMMDD_HHMMSS.xlsx
 
 ##📁 Estrutura do Projeto
+
 text
 Copiar código
 /project
@@ -105,6 +112,8 @@ Copiar código
       ├── src/
       ├── public/
       └── package.json
+
+      
 ##🎨 Frontend Dashboard (Premium)
 Interface moderna construída com:
 
